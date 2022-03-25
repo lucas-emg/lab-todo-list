@@ -1,10 +1,18 @@
 
-import './App.css';
+import './styling/todo.style.css';
+import Nav from './components/Nav';
+import Todo from './components/Todo';
+import FormNewTodo from './components/FormNewTodo';
 
 function App() {
+
+
+
   return (
     <div className="App">
-      Todo list app
+      <Nav/>
+      <FormNewTodo/>
+      <Todo/>
     </div>
   );
 }
