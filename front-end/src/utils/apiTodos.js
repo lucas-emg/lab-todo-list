@@ -3,7 +3,7 @@ import axios from "axios"
 class apiTodos {
     constructor () {
         this.api = axios.create({
-            baseURL: 'http://localhost:2000/'
+            baseURL: 'http://localhost:4000/'
 
         })
     }

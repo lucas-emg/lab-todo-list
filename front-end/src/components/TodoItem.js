@@ -1,11 +1,8 @@
 import React from 'react'
 import "../styling/todo.style.css"
-import { useEffect, useState } from 'react'
 import apiTodos from '../utils/apiTodos'
 
-
-
-const TodoItem = ({ todo, handleGetAllTodos }) => {
+const TodoItem = ({ title, id, completed, handleGetAllTodos }) => {
 
 const deleteItem = async (id) => {
         try {
@@ -15,15 +12,13 @@ const deleteItem = async (id) => {
           console.log(error)
         }
       }
-  return ( todo
-          ? <div className="todo-list">
+  return (<div className="todo-list">
               <div className="todo-item">
                 <input type="checkbox"></input>
-                <p>{todo.title}</p>
-                <button onClick={() => deleteItem(todo._id)}>X</button>
+                <p>{title}</p>
+                <button onClick={() => deleteItem(id)}>X</button>
             </div>
          </div>
-         : <p>Loading...</p>
   )
   }
 
