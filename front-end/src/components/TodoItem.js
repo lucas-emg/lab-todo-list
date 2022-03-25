@@ -12,13 +12,13 @@ const deleteItem = async (id) => {
           console.log(error)
         }
       }
-  return (<div className="todo-list">
+  return (
               <div className="todo-item">
                 <input type="checkbox"></input>
                 <p>{title}</p>
                 <button onClick={() => deleteItem(id)}>X</button>
             </div>
-         </div>
+         
   )
   }
 
