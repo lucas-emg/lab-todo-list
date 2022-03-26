@@ -40,6 +40,14 @@ class apiTodos {
             throw error.respose
         }
     }
+
+    deleteAll = async () => {
+        try {
+            await this.api.delete('/todo')
+        } catch (error) {
+            throw error.response
+        }
+    }
 }
 
 export default new apiTodos()
