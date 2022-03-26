@@ -24,7 +24,7 @@ function App() {
   return (
     <div className="App">
       <Nav/>
-      <FormNewTodo/>
+      <FormNewTodo getAllTodos={handleGetAllTodos()}/>
       <Todo todos={todos} getAllTodos={handleGetAllTodos()}/>
     </div>
   );

@@ -27,7 +27,7 @@ class apiTodos {
 
     createNewTodo = async (newTodo) => {
         try {
-            await this.api.post('/todo')
+            await this.api.post('/todo', newTodo)
         } catch (error) {
             console.log(error)
         }
