@@ -1,5 +1,6 @@
 import React from 'react'
 import TodoItem from './TodoItem'
+import catRelax from '../images/cat-cats.gif'
 
 
 
@@ -9,9 +10,10 @@ const Todo = ({todos, handleGetAllTodos}) => {
             { todos.length ?
               todos.map(todo => <TodoItem title={todo.title} key={todo._id} id={todo._id} completed={todo.completed} handleGetAllTodos={handleGetAllTodos}/>)
               : <div className='all-caught-up'>
-              <p>Wow, looks like you are all caught up.</p>
-              <p>Sit down and relax now, you deserve it!</p>
-              <iframe src="https://giphy.com/embed/S3wJnSvxofF2U" width="427" height="320" frameBorder="0" class="giphy-embed" allowFullScreen></iframe>
+              <p>Well, you either have finished all you had to do or you're here to plan your day</p>
+              <p>If you have tasks to do, you can add them above</p>
+              <p>if you are all caught up, sit down and relax - you deserve it!</p>
+              <img src={catRelax} alt='cat relaxing'/>
               </div>}
 
           </main>
