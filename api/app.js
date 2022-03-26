@@ -13,6 +13,8 @@ app.use(
     cors()
   );
 
+
+app.use('/auth', require('./routes/auth.routes'))
 app.use('/todo', require('./routes/todo.routes'))
 
 app.listen(process.env.PORT, console.log(`App is loading on port: ${process.env.PORT}`))
