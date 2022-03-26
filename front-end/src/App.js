@@ -1,5 +1,7 @@
 
 import './styling/todo.style.css';
+import './styling/nav.styling.css';
+import './styling/form.styling.css'
 import Nav from './components/Nav';
 import { useEffect, useState } from 'react'
 import apiTodos from './utils/apiTodos'
@@ -8,7 +10,7 @@ import FormNewTodo from './components/FormNewTodo';
 
 function App() {
 
-  const [ todos, setTodos ] = useState([])
+  const [ todos, setTodos ] = useState('')
 
   const handleGetAllTodos = async () => {
     const allTodos = await apiTodos.getAllTodos()
@@ -24,8 +26,8 @@ function App() {
   return (
     <div className="App">
       <Nav/>
-      <FormNewTodo getAllTodos={handleGetAllTodos()}/>
-      <Todo todos={todos} getAllTodos={handleGetAllTodos()}/>
+      <FormNewTodo getAllTodos={handleGetAllTodos}/>
+      {todos ? <Todo todos={todos} handleGetAllTodos={handleGetAllTodos}/> : <p>Loading</p>}
     </div>
   );
 }

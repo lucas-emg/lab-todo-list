@@ -35,7 +35,7 @@ class apiTodos {
 
     updateTodo = async (id, todo) => {
         try {
-            await this.api.put(`/todo/:${id}`, todo)
+            await this.api.put(`/todo/${id}`, todo)
         } catch (error) {
             throw error.respose
         }

@@ -1,0 +1,30 @@
+.form-add-todo {
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.form-add-todo form {
+  width: 70%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-add-todo input {
+  width: 20%;
+  padding: 10px 10px;
+  border: none;
+  color: #eeeeee;
+  border-bottom: 1px solid #eeeeee;
+  margin-right: 30px;
+  transition: 0.7s;
+  background-color: #333333;
+}
+
+.form-add-todo input:focus {
+  outline: none;
+  width: 50%;
+  transition: 0.7s;
+}
