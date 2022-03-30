@@ -14,8 +14,6 @@ const handleChecked = async (e) => {
     const localTodo = {
       completed: e.currentTarget.checked
     }
-
-    console.log(id, checked)
     await apiTodos.updateTodo(id, localTodo)
     await handleGetAllTodos()
   } catch (error) {
@@ -33,9 +31,18 @@ const deleteItem = async (id) => {
       }
   return (
               <div className="todo-item">
+
                 <input type="checkbox" checked={completed} onChange={handleChecked}></input>
-                {completed ? <p className='crossed-text'>{title}</p> : <p>{title}</p>}
+
+                {
+                  checked 
+                  ? <p className='crossed-text'>{title}</p> 
+                  : <p>{title}</p>
+                }
+
                 <button onClick={() => deleteItem(id)}>X</button>
+
+
             </div>
          
   )

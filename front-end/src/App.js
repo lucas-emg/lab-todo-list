@@ -2,32 +2,24 @@
 import './styling/todo.style.css';
 import './styling/nav.styling.css';
 import './styling/form.styling.css'
+import Home from './components/Home';
+import { Routes, Route } from 'react-router-dom'
 import Nav from './components/Nav';
-import { useEffect, useState } from 'react'
-import apiTodos from './utils/apiTodos'
-import Todo from './components/Todo';
-import FormNewTodo from './components/FormNewTodo';
+import Login from './components/Login';
+import Signup from './components/Signup';
 
 function App() {
-
-  const [ todos, setTodos ] = useState('')
-
-  const handleGetAllTodos = async () => {
-    const allTodos = await apiTodos.getAllTodos()
-    setTodos(allTodos)
-  }
-
-  useEffect(() => {
-    handleGetAllTodos()
-  }, [])
 
 
 
   return (
     <div className="App">
       <Nav/>
-      <FormNewTodo getAllTodos={handleGetAllTodos}/>
-      {todos ? <Todo todos={todos} handleGetAllTodos={handleGetAllTodos}/> : <p>Loading</p>}
+      <Routes>
+        <Route path='/' element={<Login/>}/>
+        <Route path='/signup' element={<Signup/>}/>
+        <Route path='/todos' element={<Home/>}/>
+      </Routes>
     </div>
   );
 }

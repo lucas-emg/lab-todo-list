@@ -1,13 +1,15 @@
 const { Router } = require('express')
 const Todo = require('../models/Todo')
+const User = require('../models/User')
+const mongoose = require('mongoose')
 
 const router = Router()
 
 router.get('/', async (req, res) => {
 
     try {
-
-        const allTodos = await Todo.find()
+        const userId = req.user.id
+        const allTodos = await Todo.find({user: userId})
 
         res.status(200).json(allTodos)
 
@@ -23,9 +25,9 @@ router.post('/', async (req, res) => {
     const payload = req.body
 
     try {
-
-        const newTodo = await Todo.create(payload)
-
+        const userId = req.user.id
+        const newTodo = await Todo.create({...payload, user: userId})
+        await User.findByIdAndUpdate(userId, { $push: { todos: newTodo._id }})
         res.status(200).json(newTodo)
 
     } catch (error) {
@@ -39,10 +41,13 @@ router.put('/:id', async (req, res) => {
 
     const { id } = req.params
     const payload = req.body
+    const userId = req.user.id
 
     try {
 
-        const updatedTodo = await Todo.findByIdAndUpdate(id, payload, {new: true})
+        const updatedTodo = await Todo.findOneAndUpdate({_id: id, user: userId}, payload, {new: true})
+
+        if(!updatedTodo) throw new Error ('Cannot update to do from another user')
 
         res.status(200).json(updatedTodo)
 
@@ -56,11 +61,20 @@ router.put('/:id', async (req, res) => {
 router.delete('/:id', async (req, res) => {
 
     const { id } = req.params
+    const userId = req.user.id
 
     try {
-        await Todo.findByIdAndDelete(id)
-        res.status(204).json()
+
+        const todo = await Todo.findById(id)
+        
+        if (todo.user.toString() !== userId) throw new Error ('Cannot delete to do from another user')
+
+        todo.delete()
+
+        res.status(204).json("Task was deleted")
+
     } catch (error) {
+        
         res.status(500).json({ error: error.message })
     }
 })
