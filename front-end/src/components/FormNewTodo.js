@@ -47,12 +47,19 @@ const FormNewTodo = ({ getAllTodos }) => {
 
 
   return (
+    
     <div className="form-add-todo">
+
         <form onSubmit={handleCreateNewTodo}>
+
             <input placeholder="New To Do" value={title} onChange={(e) => setTitle(e.target.value)}></input>
+
             <button type="submit">Add To Do</button>
+
             <button onClick={() => handleDeleteAll()}>Clear All To Dos</button>
+
         </form>
+
     </div>
   )
 }

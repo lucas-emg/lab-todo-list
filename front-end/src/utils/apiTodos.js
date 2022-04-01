@@ -6,6 +6,16 @@ class apiTodos {
             baseURL: 'http://localhost:4000/'
 
         })
+
+        this.api.interceptors.request.use((config) => {
+            const token = localStorage.getItem('token')
+            if(token) {
+                config.headers = {
+                    'Authorization': `Bearer ${localStorage.getItem('token')}`
+                }
+            }
+            return config
+        }, (error) => {console.log(error)})
     }
 
     getAllTodos = async () => {

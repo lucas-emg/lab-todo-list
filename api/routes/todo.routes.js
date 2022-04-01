@@ -70,6 +70,7 @@ router.delete('/:id', async (req, res) => {
         if (todo.user.toString() !== userId) throw new Error ('Cannot delete to do from another user')
 
         todo.delete()
+        await User.findByIdAndUpdate(userId, {$pull: {todos: id }})
 
         res.status(204).json("Task was deleted")
 
@@ -83,9 +84,11 @@ router.delete('/', async (req, res) => {
 
     try {
 
-        await Todo.deleteMany({})
+        const userId = req.user.id
+        await Todo.find({user: userId}).deleteMany({})
+        await User.findByIdAndUpdate(userId, {$unset: {todos: 1}})
 
-        res.status(204).json({ msg: 'all todos were deleted' })
+        res.status(204).json('All user to dos were deleted')
 
     } catch (error) {
         

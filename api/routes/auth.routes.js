@@ -31,9 +31,9 @@ router.post('/signup', async (req, res) => {
 
     } catch (error) {
 
-        if (error.message === 'This email is already in user') res.status(400).json(error.message)
+        if (error.message === 'This email is already in user') res.status(400).json({msg: error.message})
 
-        res.status(500).json(error.message)
+        res.status(500).json({error})
     }
 
 })
@@ -67,7 +67,7 @@ router.post('/login', async (req, res) => {
     } catch (error) {
 
         if(error.message === 'User or Password are invalid') {
-            res.status(401).json('User or Password are invalid')
+            res.status(401).json({msg: error.message})
         }
 
         res.status(500).json({msg: error.message})

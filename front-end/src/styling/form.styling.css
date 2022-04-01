@@ -53,12 +53,13 @@
 }
 
 .form-add-todo button:last-child {
-  background-color: rgb(247, 107, 56);
+  background-color: rgb(177, 82, 82);
+  color: white;
 }
 
 .form-add-todo button:last-child:hover {
   cursor: pointer;
-  background-color: rgb(243, 179, 156);
+  background-color: rgb(214, 138, 138);
   transition: 0.3s;
 }
 

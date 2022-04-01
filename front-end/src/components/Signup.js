@@ -8,6 +8,16 @@ const Signup = () => {
   const [ email, setEmail ] = useState('')
   const [ password, setPassword ] = useState('')
   const [ created, setCreated] = useState(false)
+  const [ fail, setFail ] = useState(false)
+  const [ errormsg, setError ] = useState(false)
+
+  const errorTimer = () => {
+
+    setFail(true)
+    setTimeout(() => {
+      setFail(false)
+    }, 3000);
+  }
 
 
 
@@ -23,6 +33,10 @@ const Signup = () => {
         password
       }
 
+      if(!newUser.name || !newUser.email || !newUser.password) {
+        throw new Error ('All fields are mandatory')
+      }
+
       await apiAuth.signUp(newUser)
 
       setName('')
@@ -32,8 +46,9 @@ const Signup = () => {
 
 
     } catch (error) {
-
-      console.log(error)
+      
+      errorTimer()
+      setError(error.message)
 
     }
 
@@ -41,17 +56,17 @@ const Signup = () => {
 
 
   return (
-    <div className="sign-up-page">
+    <div className="logIn">
 
-        <h1>Sign up</h1>
+        
         <form onSubmit={handleSignUp}>
-            {created && <p>User was created, please login!</p>}
-            <label>Your Name</label>
-            <input type='text' value={name} onChange={(e) => setName(e.target.value)}></input>
-            <label>Your Email</label>
-            <input type='email' value={email} onChange={(e) => setEmail(e.target.value)}></input>
-            <label>Your Password</label>
-            <input type='password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
+
+            {created && <p className='banner-succes'>User was created, please login!</p>}
+            {fail && <p className='banner-error'>{errormsg}</p>}
+            <h1>Sign up</h1>
+            <input type='text' placeholder='Name' value={name} onChange={(e) => setName(e.target.value)}></input>
+            <input type='email' placeholder='Email' value={email} onChange={(e) => setEmail(e.target.value)}></input>
+            <input type='password' placeholder='Password' value={password} onChange={(e) => setPassword(e.target.value)}></input>
             <button type="submit">Signup</button>
         </form>
     </div>

@@ -1,7 +1,33 @@
 nav {
   display: flex;
   flex-direction: row;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 30px;
   background-color: black;
   color: white;
+}
+
+nav img {
+  width: 50px;
+  height: 40px;
+}
+
+nav button {
+  padding: 15px;
+  margin-left: 10px;
+  border: none;
+  border-radius: 10px;
+  width: 90px;
+  color: white;
+  background-color: rgb(177, 82, 82);
+  font-family: "Rubik", sans-serif;
+  font-weight: 900;
+  transition: 0.3s;
+}
+
+nav button:hover {
+  cursor: pointer;
+  background-color: rgb(214, 138, 138);
+  transition: 0.3s;
 }
