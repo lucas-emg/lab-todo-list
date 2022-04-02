@@ -19,6 +19,14 @@ const Signup = () => {
     }, 3000);
   }
 
+  const successTimer = () => {
+
+    setCreated(true)
+    setTimeout(() => {
+      setCreated(false)
+    }, 3000);
+  }
+
 
 
   const handleSignUp = async (e) => {
@@ -42,7 +50,7 @@ const Signup = () => {
       setName('')
       setEmail('')
       setPassword('')
-      setCreated(true)
+      successTimer()
 
 
     } catch (error) {
